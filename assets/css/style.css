@@ -4,4 +4,7 @@ body {
 .error {
   color: #B32929; }
 
+.complete {
+  text-decoration: line-through; }
+
 /*# sourceMappingURL=style.css.map */

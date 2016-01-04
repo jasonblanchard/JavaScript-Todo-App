@@ -26,7 +26,8 @@ function renderTodos() {
   for (var i = 0; i < todos.length; i++) {
     var todo = todos[i];
     var checked = todo.complete ? 'checked' : ''
-    $('.todos').append("<li class='todo' data-id=" + todo.id + "><label><input class='toggle-todo' type='checkbox' " + checked + "/> " + todo.text + "</label></li>");
+    var className = todo.complete ? 'complete' : 'incomplete';
+    $('.todos').append("<li class='todo " + className + "' data-id=" + todo.id + "><label><input class='toggle-todo' type='checkbox' " + checked + "/> " + todo.text + "</label></li>");
   }
 }
 
