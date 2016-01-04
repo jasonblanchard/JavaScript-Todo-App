@@ -27,7 +27,7 @@ function renderTodos() {
     var todo = todos[i];
     var checked = todo.complete ? 'checked' : ''
     var className = todo.complete ? 'complete' : 'incomplete';
-    $('.todos').append("<li class='todo " + className + "' data-id=" + todo.id + "><label><input class='toggle-todo' type='checkbox' " + checked + "/> " + todo.text + "</label></li>");
+    $('.todos').append("<li class='todo " + className + "' data-id=" + todo.id + "><label><input class='toggle-todo' type='checkbox' " + checked + "/> " + todo.text + "</label><button class='delete'>delete</button></li>");
   }
 
   var totalTodos = todos.length;
@@ -97,6 +97,21 @@ $(document).ready(function() {
       $('.error').text('Your todo has to have some text.');
     }
 
+    renderTodos();
+  });
+
+  $(document).on('click', '.delete', function(event) {
+    var todoId = $(event.target).parent().data('id');
+    var index;
+
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === Number(todoId)) {
+        index = i;
+      }
+    }
+
+    todos.splice(index, 1);
+    
     renderTodos();
   });
 
