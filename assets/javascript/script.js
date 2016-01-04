@@ -70,6 +70,8 @@ $(document).ready(function() {
 
     todos.push(newTodo);
 
+    $('.todo-text').val('');
+
     renderTodos();
   });
 
