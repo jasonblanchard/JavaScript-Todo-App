@@ -62,15 +62,21 @@ $(document).ready(function() {
 
     var text = $('.todo-text').val();
 
-    var newTodo = {
-      id: incrementId(),
-      text: text,
-      completed: false
-    };
+    if (text.length > 0) {
 
-    todos.push(newTodo);
+      var newTodo = {
+        id: incrementId(),
+        text: text,
+        completed: false
+      };
 
-    $('.todo-text').val('');
+      todos.push(newTodo);
+
+      $('.todo-text').val('');
+      $('.error').text('');
+    } else {
+      $('.error').text('Your todo has to have some text.');
+    }
 
     renderTodos();
   });
