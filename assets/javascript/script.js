@@ -29,6 +29,24 @@ function renderTodos() {
     var className = todo.complete ? 'complete' : 'incomplete';
     $('.todos').append("<li class='todo " + className + "' data-id=" + todo.id + "><label><input class='toggle-todo' type='checkbox' " + checked + "/> " + todo.text + "</label></li>");
   }
+
+  var totalTodos = todos.length;
+  var totalCompleteTodos = 0;
+  var totalIncompleteTodos = 0;
+
+  for (var i = 0; i < todos.length; i++) {
+    var todo = todos[i];
+
+    if (todo.complete) {
+      totalCompleteTodos++;
+    } else {
+      totalIncompleteTodos++;
+    }
+  }
+
+  $('.total-todo-count').text(totalTodos);
+  $('.complete-todo-count').text(totalCompleteTodos);
+  $('.incomplete-todo-count').text(totalIncompleteTodos);
 }
 
 function findById(id) {
