@@ -47,6 +47,8 @@ function renderTodos() {
   $('.total-todo-count').text(totalTodos);
   $('.complete-todo-count').text(totalCompleteTodos);
   $('.incomplete-todo-count').text(totalIncompleteTodos);
+
+  saveTodos();
 }
 
 function findById(id) {
@@ -61,8 +63,21 @@ function findById(id) {
   return todo;
 }
 
+function saveTodos() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function loadSavedTodos() {
+  var savedTodos = localStorage.getItem('todos');
+
+  if (savedTodos) {
+    todos = JSON.parse(savedTodos);
+  }
+}
+
 $(document).ready(function() {
   // Initialize with any existing todos.
+  loadSavedTodos()
   renderTodos();
 
   // Bind to input update to mark todo as complete.
