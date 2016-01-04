@@ -111,8 +111,25 @@ $(document).ready(function() {
     }
 
     todos.splice(index, 1);
-    
+
     renderTodos();
   });
 
+  $(document).on('click', '.delete-completed', function() {
+
+    // Build  up a list of completed indices, but don't remove them yet so the `todos` array is not mutated as you're looping through it.
+    var completedIndices = [];
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].complete) {
+        completedIndices.push(i);
+      }
+    }
+
+    // Then loop through the indices and remove them from `todos` array backwards so that the indices do not change as we remove items.
+    for (var i = completedIndices.length - 1; i >= 0; i--) {
+      todos.splice(completedIndices[i], 1);
+    }
+
+    renderTodos();
+  });
 });
